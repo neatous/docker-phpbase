@@ -1,4 +1,4 @@
-FROM 	php:7.3-fpm-stretch
+FROM 	php:7.4-fpm-buster
 
 ENV 	TERM xterm
 
@@ -9,6 +9,7 @@ RUN 	apt-get update && apt-get install -y \
         curl \
         libc-client2007e-dev \
         libcurl4-gnutls-dev \
+        libonig-dev \
         libxml2-dev \
         libpq-dev \
         libzip-dev \
@@ -29,6 +30,7 @@ RUN     cd /tmp \
 				libgsf-1-dev \
 				libjpeg62-turbo-dev \
 				libpng-dev \
+				libpoppler-glib-dev \
 				librsvg2-dev \
 				libtiff5-dev \
 				libwebp-dev \
@@ -39,9 +41,9 @@ RUN     cd /tmp \
         && rm -rf /tmp/vips-8.8.3
 
 RUN 	docker-php-ext-install -j$(nproc) opcache bcmath curl json mbstring zip \
-	&& docker-php-ext-configure xml --with-libxml-dir=/usr/include/ \
+	&& docker-php-ext-configure xml \
 	&& docker-php-ext-install -j$(nproc) xml \
-	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
 	&& docker-php-ext-install -j$(nproc) gd \
 	&& docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
 	&& docker-php-ext-install -j$(nproc) pdo pdo_pgsql pgsql \
@@ -66,7 +68,7 @@ RUN 	apt-get update && apt-get install -y \
         libxrender1 \
         xfonts-75dpi \
         xfonts-base \
-	zlib1g
+        zlib1g
 
 RUN 	wget -O /tmp/wkhtmltox.deb https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.stretch_amd64.deb && \
     	dpkg -i /tmp/wkhtmltox.deb && \
