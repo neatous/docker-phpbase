@@ -21,9 +21,9 @@ RUN 	apt-get update && apt-get install -y \
 
 # vips dependencies and installation
 RUN     cd /tmp \
-        && wget -O vips.tar.gz https://github.com/libvips/libvips/releases/download/v8.8.3/vips-8.8.3.tar.gz \
+        && wget -O vips.tar.gz https://github.com/libvips/libvips/releases/download/v8.8.4/vips-8.8.4.tar.gz \
         && tar xf /tmp/vips.tar.gz \
-        && cd /tmp/vips-8.8.3 \
+        && cd /tmp/vips-8.8.4 \
         && apt-get -y install 	build-essential pkg-config glib2.0-dev libexpat1-dev \
         && apt-get -y install 	libexif-dev \
 				libgif-dev \
@@ -38,7 +38,7 @@ RUN     cd /tmp \
         && make \
         && make install \
         && rm -rf /tmp/vips.tar.gz \
-        && rm -rf /tmp/vips-8.8.3
+        && rm -rf /tmp/vips-8.8.4
 
 RUN 	docker-php-ext-install -j$(nproc) opcache bcmath curl json mbstring zip \
 	&& docker-php-ext-configure xml \
