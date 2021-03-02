@@ -43,7 +43,7 @@ RUN     cd /tmp \
 RUN 	docker-php-ext-install -j$(nproc) opcache bcmath curl json mbstring zip \
 	&& docker-php-ext-configure xml \
 	&& docker-php-ext-install -j$(nproc) xml \
-	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
+	&& docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
 	&& docker-php-ext-install -j$(nproc) gd \
 	&& docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
 	&& docker-php-ext-install -j$(nproc) pdo pdo_pgsql pgsql \
