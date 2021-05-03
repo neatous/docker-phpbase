@@ -40,7 +40,7 @@ RUN     cd /tmp \
         && rm -rf /tmp/vips.tar.gz \
         && rm -rf /tmp/vips-8.10.6
 
-RUN 	docker-php-ext-install -j$(nproc) opcache bcmath curl mbstring zip \
+RUN 	docker-php-ext-install -j$(nproc) bcmath curl intl mbstring opcache zip \
         && docker-php-ext-configure xml \
         && docker-php-ext-install -j$(nproc) xml \
         && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
