@@ -9,6 +9,7 @@ RUN 	apt-get update && apt-get install -y \
         curl \
         libc-client2007e-dev \
         libcurl4-gnutls-dev \
+        libheif-dev \
         libonig-dev \
         libxml2-dev \
         libpq-dev \
