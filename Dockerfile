@@ -10,6 +10,7 @@ RUN 	apt-get update && apt-get install -y \
         libc-client2007e-dev \
         libcurl4-gnutls-dev \
         libheif-dev \
+        libimagequant-dev \
         libonig-dev \
         libxml2-dev \
         libpq-dev \
