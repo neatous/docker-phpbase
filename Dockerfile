@@ -2,9 +2,6 @@ FROM 	php:8.0-fpm-buster
 
 ENV 	TERM xterm
 
-# apt does not create these directories automatically during posgresql-client installation
-RUN 	mkdir /usr/share/man/man1/ /usr/share/man/man7/
-
 RUN 	apt-get update && apt-get install -y \
         curl \
         libc-client2007e-dev \
