@@ -1,4 +1,4 @@
-FROM 	php:8.0-fpm-buster
+FROM 	php:7.4-fpm-buster
 
 ENV 	TERM xterm
 
@@ -39,7 +39,7 @@ RUN     cd /tmp \
         && rm -rf /tmp/vips.tar.gz \
         && rm -rf /tmp/vips-8.11.4
 
-RUN 	docker-php-ext-install -j$(nproc) bcmath curl gettext intl mbstring opcache zip \
+RUN 	docker-php-ext-install -j$(nproc) bcmath curl gettext intl json mbstring opcache zip \
         && docker-php-ext-configure xml \
         && docker-php-ext-install -j$(nproc) xml \
         && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
