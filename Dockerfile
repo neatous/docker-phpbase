@@ -1,4 +1,4 @@
-FROM 	php:8.0-fpm-bullseye
+FROM 	php:8.1-fpm-bullseye
 
 ENV     VIPS_VERSION        8.13.2
 ENV     REDIS_PECL_VERSION  5.3.7
