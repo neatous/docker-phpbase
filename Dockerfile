@@ -50,7 +50,7 @@ RUN 	docker-php-ext-install -j$(nproc) bcmath curl gettext intl mbstring opcache
         && docker-php-ext-install -j$(nproc) sockets \
         && pecl install apcu \
         && docker-php-ext-enable apcu \
-        && pecl install redis-5.3.4 \
+        && pecl install redis-5.3.5 \
     	&& docker-php-ext-enable redis \
         && pecl install vips \
         && docker-php-ext-enable vips
