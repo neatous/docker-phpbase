@@ -1,6 +1,6 @@
 FROM 	php:8.1-fpm-bullseye
 
-ENV     VIPS_VERSION        8.13.3
+ENV     VIPS_VERSION        8.14.1
 ENV     REDIS_PECL_VERSION  5.3.7
 ENV     WKHTMLTOPDF_VERSION 0.12.6.1-2
 
@@ -32,10 +32,10 @@ RUN 	apt-get update \
 
 # vips dependencies and installation
 RUN     cd /tmp \
-        && wget -O vips.tar.gz https://github.com/libvips/libvips/releases/download/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.gz \
-        && tar xf /tmp/vips.tar.gz \
+        && wget -O vips.tar.xz https://github.com/libvips/libvips/releases/download/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz \
+        && tar xf /tmp/vips.tar.xz \
         && cd /tmp/vips-${VIPS_VERSION} \
-        && apt-get -y install 	build-essential pkg-config glib2.0-dev libexpat1-dev \
+        && apt-get -y install 	build-essential meson pkg-config glib2.0-dev libexpat1-dev libgirepository1.0-dev \
         && apt-get -y install 	libexif-dev \
                                 libgif-dev \
                                 libgsf-1-dev \
@@ -45,10 +45,12 @@ RUN     cd /tmp \
                                 librsvg2-dev \
                                 libtiff5-dev \
                                 libwebp-dev \
-        && ./configure \
-        && make \
-        && make install \
-        && rm -rf /tmp/vips.tar.gz \
+        && meson setup build  \
+        && cd build \
+        && meson compile \
+        && meson test \
+        && meson install \
+        && rm -rf /tmp/vips.tar.xz \
         && rm -rf /tmp/vips-${VIPS_VERSION}
 
 RUN 	docker-php-ext-install -j$(nproc) bcmath ffi gettext intl opcache soap sockets zip \
@@ -62,6 +64,8 @@ RUN 	docker-php-ext-install -j$(nproc) bcmath ffi gettext intl opcache soap sock
     	&& docker-php-ext-enable redis \
         && pecl install vips \
         && docker-php-ext-enable vips
+
+RUN     apt-get -y remove --purge build-essential meson pkg-config glib2.0-dev libexpat1-dev libgirepository1.0-dev
 
 # WKHTMLTOPDF DEPENDENCY
 RUN 	apt-get update \
