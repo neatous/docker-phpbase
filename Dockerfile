@@ -1,7 +1,7 @@
 FROM 	php:8.1-fpm-bullseye
 
-ENV     VIPS_VERSION        8.14.2
 ENV     WKHTMLTOPDF_VERSION 0.12.6.1-2
+ENV     VIPS_VERSION        8.14.5
 ENV     REDIS_PECL_VERSION  6.0.1
 
 ENV 	TERM xterm
