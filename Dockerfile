@@ -1,7 +1,7 @@
 FROM 	php:8.2-fpm-bookworm
 
-ENV     VIPS_VERSION        8.14.5
 ENV     REDIS_PECL_VERSION  6.0.1
+ENV     VIPS_VERSION        8.15.0
 ENV     WKHTMLTOPDF_VERSION 0.12.6.1-3
 
 ENV 	TERM xterm
