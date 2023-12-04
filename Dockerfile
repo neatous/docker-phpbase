@@ -67,6 +67,9 @@ RUN 	docker-php-ext-install -j$(nproc) bcmath ffi gettext intl opcache soap sock
 
 RUN     apt-get -y remove --purge build-essential meson pkg-config glib2.0-dev libexpat1-dev libgirepository1.0-dev
 
+RUN     mkdir /usr/local/share/fonts/arial
+COPY    fonts/Arial /usr/local/share/fonts/arial
+
 # WKHTMLTOPDF DEPENDENCY
 RUN 	apt-get update \
         && apt-get install -y   fontconfig \
