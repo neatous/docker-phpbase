@@ -1,4 +1,4 @@
-FROM 	php:8.3-fpm-bookworm
+FROM 	php:8.3-fpm-bullseye
 
 ENV     VIPS_VERSION        8.15.2
 ENV     REDIS_PECL_VERSION  6.0.2
@@ -85,7 +85,7 @@ RUN 	apt-get update \
                                 zlib1g \
         && rm -rf /var/lib/apt/lists/*
 
-RUN 	wget -O /tmp/wkhtmltox.deb https://github.com/wkhtmltopdf/packaging/releases/download/${WKHTMLTOPDF_VERSION}/wkhtmltox_${WKHTMLTOPDF_VERSION}.bookworm_amd64.deb && \
+RUN 	wget -O /tmp/wkhtmltox.deb https://github.com/wkhtmltopdf/packaging/releases/download/${WKHTMLTOPDF_VERSION}/wkhtmltox_${WKHTMLTOPDF_VERSION}.bullseye_amd64.deb && \
     	dpkg -i /tmp/wkhtmltox.deb && \
     	rm /tmp/wkhtmltox.deb
 
