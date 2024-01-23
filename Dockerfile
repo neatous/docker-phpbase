@@ -53,7 +53,7 @@ RUN     cd /tmp \
         && rm -rf /tmp/vips.tar.xz \
         && rm -rf /tmp/vips-${VIPS_VERSION}
 
-RUN 	docker-php-ext-install -j$(nproc) bcmath ffi gettext intl opcache soap sockets zip \
+RUN 	docker-php-ext-install -j$(nproc) bcmath ffi ftp gettext intl opcache soap sockets zip \
         && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
         && docker-php-ext-install -j$(nproc) gd \
         && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
