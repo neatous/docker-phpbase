@@ -1,22 +1,21 @@
-FROM 	php:8.3-fpm-bookworm
+FROM 	php:8.3-fpm-trixie
 
-ENV     VIPS_VERSION        8.17.1
-ENV     REDIS_PECL_VERSION  6.2.0
-ENV     WKHTMLTOPDF_VERSION 0.12.6.1-3
+ENV     VIPS_VERSION=8.18.0
+ENV     REDIS_PECL_VERSION=6.3.0
+ENV     WKHTMLTOPDF_VERSION=0.12.6.1-3
 
-ENV 	TERM xterm
+ENV 	TERM=xterm
 
 RUN     apt-get update && apt-get install -y locales && \
         sed -i '/cs_CZ.UTF-8/s/^# //g' /etc/locale.gen && \
         locale-gen
 
-ENV     LC_ALL cs_CZ.UTF-8
-ENV     LANG cs_CZ.UTF-8
-ENV     LANGUAGE cs_CZ
+ENV     LC_ALL=cs_CZ.UTF-8
+ENV     LANG=cs_CZ.UTF-8
+ENV     LANGUAGE=cs_CZ
 
 RUN 	apt-get update \
         && apt-get install -y   curl \
-                                libc-client2007e-dev \
                                 libcurl4-gnutls-dev \
                                 libheif-dev \
                                 libimagequant-dev \
