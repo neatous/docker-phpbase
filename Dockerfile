@@ -1,4 +1,4 @@
-FROM 	php:8.3-fpm-trixie
+FROM 	php:8.4-fpm-trixie
 
 ENV     VIPS_VERSION=8.18.0
 ENV     REDIS_PECL_VERSION=6.3.0
