@@ -1,4 +1,4 @@
-FROM 	php:8.4-fpm-trixie
+FROM 	php:8.5-fpm-trixie
 
 ENV     VIPS_VERSION=8.18.0
 ENV     REDIS_PECL_VERSION=6.3.0
@@ -52,7 +52,7 @@ RUN     cd /tmp \
         && rm -rf /tmp/vips.tar.xz \
         && rm -rf /tmp/vips-${VIPS_VERSION}
 
-RUN 	docker-php-ext-install -j$(nproc) bcmath ffi ftp gettext intl opcache soap sockets zip \
+RUN 	docker-php-ext-install -j$(nproc) bcmath ffi ftp gettext intl soap sockets zip \
         && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
         && docker-php-ext-install -j$(nproc) gd \
         && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
